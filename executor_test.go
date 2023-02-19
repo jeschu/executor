@@ -1,13 +1,13 @@
 package executor
 
 import (
-	"github.com/stretchr/testify/assert"
+	assrt "github.com/stretchr/testify/assert"
 	"runtime"
 	"testing"
 )
 
 func TestValidateDefaultConfig(t *testing.T) {
-	assert := assert.New(t)
+	assert := assrt.New(t)
 
 	executor, err := New(Config{})
 	defer executor.Close()
@@ -20,7 +20,7 @@ func TestValidateDefaultConfig(t *testing.T) {
 }
 
 func TestValidateConfig(t *testing.T) {
-	assert := assert.New(t)
+	assert := assrt.New(t)
 
 	executor, err := New(Config{QueueSize: 20, NumWorkers: 2})
 	defer executor.Close()
@@ -33,7 +33,7 @@ func TestValidateConfig(t *testing.T) {
 }
 
 func TestPublishJobSuccess(t *testing.T) {
-	assert := assert.New(t)
+	assert := assrt.New(t)
 
 	executor, err := New(Config{})
 	assert.Nil(err)
@@ -49,7 +49,7 @@ func TestPublishJobSuccess(t *testing.T) {
 }
 
 func TestPublishJobFail(t *testing.T) {
-	assert := assert.New(t)
+	assert := assrt.New(t)
 
 	executor, err := New(Config{})
 	assert.Nil(err)

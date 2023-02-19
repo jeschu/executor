@@ -7,11 +7,11 @@ import (
 )
 
 type Task struct {
-	handler any
+	handler interface{}
 	args    []reflect.Value
 }
 
-func NewTask(handler any, inputArgs ...any) (*Task, error) {
+func NewTask(handler interface{}, inputArgs ...interface{}) (*Task, error) {
 	nArgs := len(inputArgs)
 	parsedHandler, err := validateFunc(handler, nArgs)
 	if err != nil {
@@ -24,7 +24,7 @@ func NewTask(handler any, inputArgs ...any) (*Task, error) {
 	return &Task{handler: parsedHandler, args: args}, nil
 }
 
-func validateFunc(handler any, nArgs int) (any, error) {
+func validateFunc(handler interface{}, nArgs int) (interface{}, error) {
 	f := reflect.Indirect(reflect.ValueOf(handler))
 	if f.Kind() != reflect.Func {
 		return f, fmt.Errorf("%T must be a function", f)

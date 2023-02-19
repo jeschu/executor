@@ -78,7 +78,7 @@ func (executor *Executor) Close() {
 	close(executor.tasks)
 }
 
-func (executor *Executor) Publish(handler any, args ...any) error {
+func (executor *Executor) Publish(handler interface{}, args ...interface{}) error {
 	task, err := NewTask(handler, args...)
 	if err != nil {
 		return err
